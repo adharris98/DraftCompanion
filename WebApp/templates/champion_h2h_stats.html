@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style>
+            .dc-navbar {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                margin-bottom: 5vh;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row dc-navbar">
+            <a class="navbar-brand m-2" href="/">DraftCompanion</a>
+            <div class="navbar-nav-scroll">
+                <ul class="navbar-nav bd-navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('champion_list') }}">Champions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('one_v_one') }}">1v1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('five_v_five') }}">5v5</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('draft_companion') }}">Draft Companion</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="d-flex"><img class="img-fluid mx-auto" style="height: 240px; width: auto;" src="http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/{{page_title}}.png"/></div>
+        <h1 class="mx-2">{{page_title}} Versus:</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                    <tr>
+                        <th scope="col">{{table_headers[0]}}</th>
+                        <th scope="col">{{table_headers[1]}}</th>
+                        <th scope="col">{{table_headers[2]}}</th>
+                        <th scope="col">{{table_headers[3]}}</th>
+                        <th scope="col">{{table_headers[4]}}
+                            <a href="{{ url_for('index') }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.97 8.265a1.45 1.45 0 00-.487.57.75.75 0 01-1.341-.67c.2-.402.513-.826.997-1.148C10.627 6.69 11.244 6.5 12 6.5c.658 0 1.369.195 1.934.619a2.45 2.45 0 011.004 2.006c0 1.033-.513 1.72-1.027 2.215-.19.183-.399.358-.579.508l-.147.123a4.329 4.329 0 00-.435.409v1.37a.75.75 0 11-1.5 0v-1.473c0-.237.067-.504.247-.736.22-.28.486-.517.718-.714l.183-.153.001-.001c.172-.143.324-.27.47-.412.368-.355.569-.676.569-1.136a.953.953 0 00-.404-.806C12.766 8.118 12.384 8 12 8c-.494 0-.814.121-1.03.265zM13 17a1 1 0 11-2 0 1 1 0 012 0z"></path><path fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zM2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0z"></path></svg></a>
+                        </th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <td><a href="/champion_data/versus/{{row[0]}}">{{row[0]}}</a></td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}%</td>
+                        <td>{{row[4]}}%</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

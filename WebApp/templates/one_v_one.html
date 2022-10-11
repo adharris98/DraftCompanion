@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style>
+            .dc-navbar {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row dc-navbar">
+            <a class="navbar-brand m-2" href="/">DraftCompanion</a>
+            <div class="navbar-nav-scroll">
+                <ul class="navbar-nav bd-navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('champion_list') }}">Champions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('one_v_one') }}">1v1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('five_v_five') }}">5v5</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('draft_companion') }}">Draft Companion</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <h1 class="mx-2">Champion One vs. One Calculator</h1>
+        <!-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="userChampion" data-bs-toggle="dropdown" aria-expanded="false">
+                {{userSelectMessage}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="userChampion">
+                {% for champion in champions %}
+                    <li><a class="dropdown-item" href="/one_v_one/{{champion}}/{{enemySelect}}">{{champion}}</a></li>
+                {% endfor %}
+            </ul>
+            vs.
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="enemyChampion" data-bs-toggle="dropdown" aria-expanded="false">
+                {{enemySelectMessage}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="enemyChampion">
+                {% for champion in champions %}
+                    <li><a class="dropdown-item" href="/one_v_one/{{userSelect}}/{{champion}}">{{champion}}</a></li>
+                {% endfor %}
+            </ul>
+        </div> -->
+        <div class="container">
+            <form method="POST" action="{{ url_for('one_v_one') }}">
+                <div class="row">
+                    <div class="col-sm-6 p-3">
+                        <div class="form-group">
+                            <select class="form-select" name="user_champion">
+                                <option selected>{{userMessage}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}" onclick="">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-3">
+                        <div class="form-group">
+                            <select class="form-select" name="enemy_champion">
+                                <option selected>{{enemyMessage}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2 p-3 mx-auto w-25" >
+                    <button type="submit" class="btn btn-primary align-middle">
+                        Go
+                    </button>
+                </div>
+            </form>
+        </div>
+        {% if display %}
+        <div class="container mt-4">
+            <h2 class="text-center">{{user}} vs. {{enemy}}</h2>
+            <div class="container">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                            <tr>
+                                <th scope="col">{{table_headers[0]}}</th>
+                                <th scope="col">{{table_headers[1]}}</th>
+                                <th scope="col">{{table_headers[2]}}</th>
+                                <th scope="col">{{table_headers[3]}}</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                            <tr>
+                                <td>{{row[0]}}</td>
+                                <td>{{row[1]}}</td>
+                                <td>{{row[2]}}%</td>
+                                <td>{{row[3]}}%</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

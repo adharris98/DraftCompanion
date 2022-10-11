@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style id="page_style">
+            img {
+                border-radius: 50%;
+                border: 5px solid #cabfa1;
+                max-width: 130px;
+                max-height: 130px;
+            }
+            .red_side {
+                background-color: #c0000080;
+            }
+            .blue_side {
+                background-color: #0070c080;
+            }
+            #fvf_header {
+                width: 25%;
+            }
+            #fvf_row {
+                /* height: 162px; */
+                height: auto;
+                /* max-height: 300px; */
+                border: black;
+            }
+            #champion_image {
+                width: 160px;
+                justify-items: auto;
+                align-items: center;
+            }
+            #champ_select {
+                width: 17.5%;
+                align-items: center;
+            }
+            #champion_select_box {
+                width: 100%;
+            }
+            .champ_info {
+                width: 20%;
+                min-width: 12.5%;
+                height: auto;
+                text-align: center;
+            }
+            .champ_info_total {
+                width: 40%;
+                min-width: 12.5%;
+                height: auto;
+                text-align: center;
+            }
+            #champ_info_blue {
+                /* width: 15%;
+                height: auto; */
+                /* border: 1px solid #dee2e6; */
+                background-color: #0070c080;
+            }
+            #champ_info_red {
+                /* width: 15%;
+                height: auto; */
+                /* border: 1px solid #dee2e6; */
+                background-color: #c0000080;
+            }
+            #row_filler {
+                min-width: 10%;
+                width: auto;
+                border: #00000080;
+            }
+        </style>
+        <style id="switch_button_style">
+            .switch {
+              position: relative;
+              display: inline-block;
+              width: 60px;
+              height: 34px;
+            }
+            
+            .switch input { 
+              opacity: 0;
+              width: 0;
+              height: 0;
+            }
+            
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #ccc;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+            
+            .slider:before {
+              position: absolute;
+              content: "";
+              height: 26px;
+              width: 26px;
+              left: 4px;
+              bottom: 4px;
+              background-color: white;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+            
+            input:checked + .slider {
+              background-color: #2196F3;
+            }
+            
+            input:focus + .slider {
+              box-shadow: 0 0 1px #2196F3;
+            }
+            
+            input:checked + .slider:before {
+              -webkit-transform: translateX(26px);
+              -ms-transform: translateX(26px);
+              transform: translateX(26px);
+            }
+            
+            /* Rounded sliders */
+            .slider.round {
+              border-radius: 34px;
+            }
+            
+            .slider.round:before {
+              border-radius: 50%;
+            }
+            </style>
+        <style>
+            .dc-navbar {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row dc-navbar">
+            <a class="navbar-brand m-2" href="/">DraftCompanion</a>
+            <div class="navbar-nav-scroll">
+                <ul class="navbar-nav bd-navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('champion_list') }}">Champions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('one_v_one') }}">1v1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('five_v_five') }}">5v5</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('draft_companion') }}">Draft Companion</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <h1 class="mx-2">Champion Five vs. Five Calculator</h1>
+
+        <div class="container-fluid border">
+            <form class="" method="POST" action="{{ url_for('five_v_five') }}">
+                <div class="row justify-content-center">
+                    <div id="fvf_header" class="col-sm-6 p-3 mx-5">
+                        <h3 class="text-center">Blue Side</h3>
+                    </div>
+                    <div id="fvf_header" class="col-sm-6 p-3 d-flex w-auto mx-5">
+                        <label class="switch my-auto">
+                            <input type="checkbox" id="viewSwitch" onclick="switchView()">
+                            <span class="slider round"></span>
+                        </label>
+                        <h5 class="mx-auto my-auto p-2">Detailed View</h5>
+                    </div>
+                    <div id="fvf_header" class="col-sm-6 p-3 mx-5">
+                        <h3 class="text-center">Red Side</h3>
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center border">
+                <!-- <div class="row" style="height: 175px;"> -->
+                    <div id="champion_image" class="blue_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="blue_champion_1" src="{{blueImages[0]}}" />
+                    </div>
+                    <div id="champ_select" class="blue_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="blue_selection_dropdown" class="form-select" name="blue_champion_1" onchange="displayImage(this)">
+                                <option selected>{{blueMessages[0]}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champ_info_blue" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{blueMessages[0]}} win % versus:</p></u></strong>
+                            <p>{{redMessages[0]}}: {{blue_versus[blueMessages[0]][0][redMessages[0]][2]}}%</p>
+                            <p>{{redMessages[1]}}: {{blue_versus[blueMessages[0]][1][redMessages[1]][2]}}%</p>
+                            <p>{{redMessages[2]}}: {{blue_versus[blueMessages[0]][2][redMessages[2]][2]}}%</p>
+                            <p>{{redMessages[3]}}: {{blue_versus[blueMessages[0]][3][redMessages[3]][2]}}%</p>
+                            <p>{{redMessages[4]}}: {{blue_versus[blueMessages[0]][4][redMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{blue_versus[blueMessages[0]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{blue_versus[blueMessages[0]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{redMessages[0]}} win % versus:</p></u></strong>
+                            <p>{{blueMessages[0]}}: {{red_versus[redMessages[0]][0][blueMessages[0]][2]}}%</p>
+                            <p>{{blueMessages[1]}}: {{red_versus[redMessages[0]][1][blueMessages[1]][2]}}%</p>
+                            <p>{{blueMessages[2]}}: {{red_versus[redMessages[0]][2][blueMessages[2]][2]}}%</p>
+                            <p>{{blueMessages[3]}}: {{red_versus[redMessages[0]][3][blueMessages[3]][2]}}%</p>
+                            <p>{{blueMessages[4]}}: {{red_versus[redMessages[0]][4][blueMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{red_versus[redMessages[0]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{red_versus[redMessages[0]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_select" class="red_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="red_selection_dropdown" class="form-select" name="red_champion_1" onchange="displayImage(this)">
+                                <option selected>{{redMessages[0]}}</option>
+                                {% for champion in champions %}
+                                <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champion_image" class="red_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="red_champion_1" src="{{redImages[0]}}" />
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center border">
+                    <div id="champion_image" class="blue_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="blue_champion_2" src="{{blueImages[1]}}" />
+                    </div>
+                    <div id="champ_select" class="blue_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="blue_selection_dropdown" class="form-select" name="blue_champion_2" onchange="displayImage(this)">
+                                <option selected>{{blueMessages[1]}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}" onclick="">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champ_info_blue" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{blueMessages[1]}} win % versus:</p></u></strong>
+                            <p>{{redMessages[0]}}: {{blue_versus[blueMessages[1]][0][redMessages[0]][2]}}%</p>
+                            <p>{{redMessages[1]}}: {{blue_versus[blueMessages[1]][1][redMessages[1]][2]}}%</p>
+                            <p>{{redMessages[2]}}: {{blue_versus[blueMessages[1]][2][redMessages[2]][2]}}%</p>
+                            <p>{{redMessages[3]}}: {{blue_versus[blueMessages[1]][3][redMessages[3]][2]}}%</p>
+                            <p>{{redMessages[4]}}: {{blue_versus[blueMessages[1]][4][redMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{blue_versus[blueMessages[1]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{blue_versus[blueMessages[1]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{redMessages[1]}} win % versus:</p></u></strong>
+                            <p>{{blueMessages[0]}}: {{red_versus[redMessages[1]][0][blueMessages[0]][2]}}%</p>
+                            <p>{{blueMessages[1]}}: {{red_versus[redMessages[1]][1][blueMessages[1]][2]}}%</p>
+                            <p>{{blueMessages[2]}}: {{red_versus[redMessages[1]][2][blueMessages[2]][2]}}%</p>
+                            <p>{{blueMessages[3]}}: {{red_versus[redMessages[1]][3][blueMessages[3]][2]}}%</p>
+                            <p>{{blueMessages[4]}}: {{red_versus[redMessages[1]][4][blueMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{red_versus[redMessages[1]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{red_versus[redMessages[1]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_select" class="red_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="red_selection_dropdown" class="form-select" name="red_champion_2" onchange="displayImage(this)">
+                                <option selected>{{redMessages[1]}}</option>
+                                {% for champion in champions %}
+                                <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champion_image" class="red_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="red_champion_2" src="{{redImages[1]}}" />
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center border">
+                    <div id="champion_image" class="blue_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="blue_champion_3" src="{{blueImages[2]}}" />
+                    </div>
+                    <div id="champ_select" class="blue_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="blue_selection_dropdown" class="form-select" name="blue_champion_3" onchange="displayImage(this)">
+                                <option selected>{{blueMessages[2]}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}" onclick="">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champ_info_blue" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{blueMessages[2]}} win % versus:</p></u></strong>
+                            <p>{{redMessages[0]}}: {{blue_versus[blueMessages[2]][0][redMessages[0]][2]}}%</p>
+                            <p>{{redMessages[1]}}: {{blue_versus[blueMessages[2]][1][redMessages[1]][2]}}%</p>
+                            <p>{{redMessages[2]}}: {{blue_versus[blueMessages[2]][2][redMessages[2]][2]}}%</p>
+                            <p>{{redMessages[3]}}: {{blue_versus[blueMessages[2]][3][redMessages[3]][2]}}%</p>
+                            <p>{{redMessages[4]}}: {{blue_versus[blueMessages[2]][4][redMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{blue_versus[blueMessages[2]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{blue_versus[blueMessages[2]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{redMessages[2]}} win % versus:</p></u></strong>
+                            <p>{{blueMessages[0]}}: {{red_versus[redMessages[2]][0][blueMessages[0]][2]}}%</p>
+                            <p>{{blueMessages[1]}}: {{red_versus[redMessages[2]][1][blueMessages[1]][2]}}%</p>
+                            <p>{{blueMessages[2]}}: {{red_versus[redMessages[2]][2][blueMessages[2]][2]}}%</p>
+                            <p>{{blueMessages[3]}}: {{red_versus[redMessages[2]][3][blueMessages[3]][2]}}%</p>
+                            <p>{{blueMessages[4]}}: {{red_versus[redMessages[2]][4][blueMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{red_versus[redMessages[2]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{red_versus[redMessages[2]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_select" class="red_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="red_selection_dropdown" class="form-select" name="red_champion_3" onchange="displayImage(this)">
+                                <option selected>{{redMessages[2]}}</option>
+                                {% for champion in champions %}
+                                <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champion_image" class="red_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="red_champion_3" src="{{redImages[2]}}" />
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center border">
+                    <div id="champion_image" class="blue_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="blue_champion_4" src="{{blueImages[3]}}" />
+                    </div>
+                    <div id="champ_select" class="blue_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="blue_selection_dropdown" class="form-select" name="blue_champion_4" onchange="displayImage(this)">
+                                <option selected>{{blueMessages[3]}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}" onclick="">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champ_info_blue" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{blueMessages[3]}} win % versus:</p></u></strong>
+                            <p>{{redMessages[0]}}: {{blue_versus[blueMessages[3]][0][redMessages[0]][2]}}%</p>
+                            <p>{{redMessages[1]}}: {{blue_versus[blueMessages[3]][1][redMessages[1]][2]}}%</p>
+                            <p>{{redMessages[2]}}: {{blue_versus[blueMessages[3]][2][redMessages[2]][2]}}%</p>
+                            <p>{{redMessages[3]}}: {{blue_versus[blueMessages[3]][3][redMessages[3]][2]}}%</p>
+                            <p>{{redMessages[4]}}: {{blue_versus[blueMessages[3]][4][redMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{blue_versus[blueMessages[3]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{blue_versus[blueMessages[3]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{redMessages[3]}} win % versus:</p></u></strong>
+                            <p>{{blueMessages[0]}}: {{red_versus[redMessages[3]][0][blueMessages[0]][2]}}%</p>
+                            <p>{{blueMessages[1]}}: {{red_versus[redMessages[3]][1][blueMessages[1]][2]}}%</p>
+                            <p>{{blueMessages[2]}}: {{red_versus[redMessages[3]][2][blueMessages[2]][2]}}%</p>
+                            <p>{{blueMessages[3]}}: {{red_versus[redMessages[3]][3][blueMessages[3]][2]}}%</p>
+                            <p>{{blueMessages[4]}}: {{red_versus[redMessages[3]][4][blueMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{red_versus[redMessages[3]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{red_versus[redMessages[3]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_select" class="red_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="red_selection_dropdown" class="form-select" name="red_champion_4" onchange="displayImage(this)">
+                                <option selected>{{redMessages[3]}}</option>
+                                {% for champion in champions %}
+                                <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champion_image" class="red_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="red_champion_4" src="{{redImages[3]}}" />
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center border">
+                    <div id="champion_image" class="blue_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="blue_champion_5" src="{{blueImages[4]}}" />
+                    </div>
+                    <div id="champ_select" class="blue_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="blue_selection_dropdown" class="form-select" name="blue_champion_5" onchange="displayImage(this)">
+                                <option selected>{{blueMessages[4]}}</option>
+                                {% for champion in champions %}
+                                    <option value="{{champion}}" onclick="">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champ_info_blue" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{blueMessages[4]}} win % versus:</p></u></strong>
+                            <p>{{redMessages[0]}}: {{blue_versus[blueMessages[4]][0][redMessages[0]][2]}}%</p>
+                            <p>{{redMessages[1]}}: {{blue_versus[blueMessages[4]][1][redMessages[1]][2]}}%</p>
+                            <p>{{redMessages[2]}}: {{blue_versus[blueMessages[4]][2][redMessages[2]][2]}}%</p>
+                            <p>{{redMessages[3]}}: {{blue_versus[blueMessages[4]][3][redMessages[3]][2]}}%</p>
+                            <p>{{redMessages[4]}}: {{blue_versus[blueMessages[4]][4][redMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{blue_versus[blueMessages[4]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{blue_versus[blueMessages[4]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <div class="detailedView mx-auto my-auto" style="display:none">
+                            <strong><u><p>{{redMessages[4]}} win % versus:</p></u></strong>
+                            <p>{{blueMessages[0]}}: {{red_versus[redMessages[4]][0][blueMessages[0]][2]}}%</p>
+                            <p>{{blueMessages[1]}}: {{red_versus[redMessages[4]][1][blueMessages[1]][2]}}%</p>
+                            <p>{{blueMessages[2]}}: {{red_versus[redMessages[4]][2][blueMessages[2]][2]}}%</p>
+                            <p>{{blueMessages[3]}}: {{red_versus[redMessages[4]][3][blueMessages[3]][2]}}%</p>
+                            <p>{{blueMessages[4]}}: {{red_versus[redMessages[4]][4][blueMessages[4]][2]}}%</p>
+                            <p><strong>Total: {{red_versus[redMessages[4]][5]['total'][2]}}%</strong></p></div>
+                            <h1 class="generalView mx-auto my-auto"><strong>{{red_versus[redMessages[4]][5]['total'][2]}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_select" class="red_side col-sm-6 p-3 d-flex">
+                        <div id="champion_select_box" class="form-group">
+                            <select id="red_selection_dropdown" class="form-select" name="red_champion_5" onchange="displayImage(this)">
+                                <option selected>{{redMessages[4]}}</option>
+                                {% for champion in champions %}
+                                <option value="{{champion}}">{{champion}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="champion_image" class="red_side col-sm-6 p-3 d-flex">
+                        <img class="img-fluid mx-auto" id="red_champion_5" src="{{redImages[4]}}" />
+                    </div>
+                </div>
+                <div id="fvf_row" class="row justify-content-center">
+                    <div id="champ_info_blue" class="champ_info_total col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <h1 class="mx-auto my-auto">Team Win Rate: <strong>{{blue_versus['total']}}%</strong></h1>
+                        {% endif %}
+                    </div>
+                    <div id="champ_info_red" class="champ_info_total col-sm-6 p-3 d-flex">
+                        {% if display %}
+                            <h1 class="mx-auto my-auto"><strong>{{red_versus['total']}}%</strong> :Team Win Rate</h1>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="d-grid gap-2 p-3 mx-auto w-25">
+                    <button type="submit" class="btn btn-primary align-middle">
+                        Go
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <script>
+            function displayImage(el) {
+                const option = el.value;
+                var image_src = option.split(" ")[0];
+                const name = el.name;
+                var selectedId = name.toString();
+                var selectedColor = selectedId.split("_")[0];
+                // console.log(selectedColor);
+                let image = document.getElementById(selectedId);
+                if (image_src == 'Red' || image_src == 'Blue') {
+                    image.src = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png";
+                }
+                else {
+                    image.src = 'http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/'+option+'.png'
+                }
+                // communicateWithFlask(selectedColor);
+                return option;
+            }
+        </script>
+        <script>
+            function switchView() {
+                var viewSwitch = document.getElementById("viewSwitch");
+                var detailedViews = document.getElementsByClassName("detailedView");
+                var generalViews = document.getElementsByClassName("generalView");
+                console.log(viewSwitch);
+                console.log(detailedViews);
+                console.log(generalViews);
+                for(let i = 0; i < 10; i++){
+                    if (viewSwitch.checked == true){
+                        detailedViews[i].style.display = "block";
+                        generalViews[i].style.display = "none";
+                    }
+                    else {
+                        detailedViews[i].style.display = "none";
+                        generalViews[i].style.display = "block";
+                    }
+                }
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

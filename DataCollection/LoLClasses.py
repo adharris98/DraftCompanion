@@ -121,8 +121,7 @@ class Team:
 
 class MatchInfo:
     def __init__(self, match_data) -> None:
-        self.blue, self.red, self.winner, self.gameID = self.parse_match(
-            match_data)
+        self.blue, self.red, self.winner, self.gameID = self.parse_match(match_data)
 
     def __str__(self) -> str:
         return f'#### - Match Data - ####\nID number: {self.gameID}\n{self.blue}\n{self.red}\nWinner: {self.winner}'
