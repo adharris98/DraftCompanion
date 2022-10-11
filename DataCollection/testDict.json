@@ -1,0 +1,320 @@
+{
+    "challenger": {
+        "EUN1": [
+            {
+                "summonerId": "o8CljuuYBds2iW13CVevM1j6rhZsl7lqWzX89o1UAi4o9bc",
+                "summonerName": "Mleczny \u0141ukaszek",
+                "leaguePoints": 819,
+                "rank": "I",
+                "wins": 169,
+                "losses": 133,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "TA6N1Tn-baXrp6-sJ8m3TbC30D4I1QfXA78Ca9kgqhGUHoioRn-je7VX2A",
+                "summonerName": "feelings eternal",
+                "leaguePoints": 819,
+                "rank": "I",
+                "wins": 160,
+                "losses": 131,
+                "veteran": true,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "EUW1": [
+            {
+                "summonerId": "kSfPTkxDGLebuPXs1_T7RQ8gEOLzRuGrLemj2IkVWiiaqsI",
+                "summonerName": "Shending Help",
+                "leaguePoints": 1147,
+                "rank": "I",
+                "wins": 256,
+                "losses": 191,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "RPS40R8gtSaGRLBr7zjWU_adHmutjwTZKqYIlzCKtDHsA7E",
+                "summonerName": "Furuy",
+                "leaguePoints": 1003,
+                "rank": "I",
+                "wins": 246,
+                "losses": 192,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            }
+        ],
+        "KR": [
+            {
+                "summonerId": "jusvnpDwRFvWEnandZv2aFdSbJ7e7Brn3770se25hsvgarguqMZlXRO0kQ",
+                "summonerName": "opasdwqexz",
+                "leaguePoints": 890,
+                "rank": "I",
+                "wins": 590,
+                "losses": 524,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "TB548L1wdOFOC26kuSFySvTKzH_nZDclu2ezyPASEYvxuIGx",
+                "summonerName": "Croco",
+                "leaguePoints": 968,
+                "rank": "I",
+                "wins": 305,
+                "losses": 241,
+                "veteran": true,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "NA1": [
+            {
+                "summonerId": "YMWGX_48cznaV0Q3q_cI_UnFAFj1wE4KUlUPwGBHQL59hbVv",
+                "summonerName": "Path To LCS",
+                "leaguePoints": 876,
+                "rank": "I",
+                "wins": 391,
+                "losses": 353,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "Jk_C0UTIdNVN9z5c4ycdKng5Qd7OVRWTU6jBf1MHJrtVxsw",
+                "summonerName": "taibotxd",
+                "leaguePoints": 868,
+                "rank": "I",
+                "wins": 346,
+                "losses": 306,
+                "veteran": true,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ]
+    },
+    "grandmaster": {
+        "EUN1": [
+            {
+                "summonerId": "6aTPsQCxFRKGJbONWXDjf__Ed2sAlU9jmFyTaYLC-eYTu70",
+                "summonerName": "Dragon Ball Z",
+                "leaguePoints": 617,
+                "rank": "I",
+                "wins": 142,
+                "losses": 126,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "Ic17geAxZhZJqPiWGRv1ohLGEjdDVS0bXsU75RX4bIHcrbI",
+                "summonerName": "OmulFinn",
+                "leaguePoints": 613,
+                "rank": "I",
+                "wins": 115,
+                "losses": 89,
+                "veteran": true,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "EUW1": [
+            {
+                "summonerId": "UDdkbPtUqkA5JtaLgqsmV5KPM2q6W6r9FyIyOUx08gaNGts",
+                "summonerName": "Nunu",
+                "leaguePoints": 721,
+                "rank": "I",
+                "wins": 616,
+                "losses": 584,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": true
+            },
+            {
+                "summonerId": "XpjYw6ckXzviqrwffvvNRE84PN7ppncQ45bn4N_w805blvk",
+                "summonerName": "lDemexl",
+                "leaguePoints": 870,
+                "rank": "I",
+                "wins": 319,
+                "losses": 252,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            }
+        ],
+        "KR": [
+            {
+                "summonerId": "-A6Sp-o-eVfpGh-P2MCkdD14D4oGUKMnCriE1dyOJL5yKulyykzh7g0bPA",
+                "summonerName": "Z RyeoKR",
+                "leaguePoints": 470,
+                "rank": "I",
+                "wins": 95,
+                "losses": 73,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "x7ipQ6OvqoFcVcZK9odoxVVuhwXf4qEsEjwO_35j8yjj_LUpX8RzAgCfjg",
+                "summonerName": "\ud3ec\uc2dd\uc790",
+                "leaguePoints": 477,
+                "rank": "I",
+                "wins": 113,
+                "losses": 88,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            }
+        ],
+        "NA1": [
+            {
+                "summonerId": "FRCLtPmn1LT3lIx_RYAH1r2pTTO4fCVLXxYfsI2EXPBqylg",
+                "summonerName": "BIossoms",
+                "leaguePoints": 604,
+                "rank": "I",
+                "wins": 194,
+                "losses": 174,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "u8fz5xMltcJVvUJ7v5sqUJIWCfSeoDnsRLlxc68j-XyEf98",
+                "summonerName": "DrDolelicious",
+                "leaguePoints": 490,
+                "rank": "I",
+                "wins": 167,
+                "losses": 140,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            }
+        ]
+    },
+    "master": {
+        "EUN1": [
+            {
+                "summonerId": "gP9miDADt5f8FEHE2AdEcKbFRMnDbOML6axVtD-DS3Ob22E",
+                "summonerName": "S12 IS S\u039f FUN",
+                "leaguePoints": 1,
+                "rank": "I",
+                "wins": 107,
+                "losses": 93,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "-YEAELVvMCCsbASBbbQnYr0iiCUod2ppCkqQj3D-KXgz86A0UpJtsuqwyQ",
+                "summonerName": "MENTAL",
+                "leaguePoints": 248,
+                "rank": "I",
+                "wins": 83,
+                "losses": 61,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "EUW1": [
+            {
+                "summonerId": "LvtS9YlHTm7j2aIy36ZeNNA4zwIWUKFC2qmKXR1Vd5d8SO88",
+                "summonerName": "Next Z\u00eaitnot ",
+                "leaguePoints": 1,
+                "rank": "I",
+                "wins": 204,
+                "losses": 194,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "tPZzeUApvRoAsBHoQpg-EkqR7T4M5Qcx_rL96WIp6nKhL0JJZ9VOW58Bew",
+                "summonerName": "I Marelack I",
+                "leaguePoints": 17,
+                "rank": "I",
+                "wins": 283,
+                "losses": 251,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "KR": [
+            {
+                "summonerId": "KkS9Gf3kS0gWaVavWQJ0GztwqgyLoujhRTLukzMwLG3TABM",
+                "summonerName": "withziin",
+                "leaguePoints": 1,
+                "rank": "I",
+                "wins": 230,
+                "losses": 190,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "oT4BsL4JitQb3ATjir3ND7jhxji_b7EUzFLq67_xxQljbjuLT9OYpCRwpA",
+                "summonerName": "ueii",
+                "leaguePoints": 21,
+                "rank": "I",
+                "wins": 79,
+                "losses": 50,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ],
+        "NA1": [
+            {
+                "summonerId": "ct6TcG-j3_k2EtKvSDXyQOptKmNlY50Yi-O1PACdNT61E2A",
+                "summonerName": "TTea",
+                "leaguePoints": 468,
+                "rank": "I",
+                "wins": 324,
+                "losses": 305,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": true,
+                "hotStreak": false
+            },
+            {
+                "summonerId": "0AOpx9Qkp2LKE6VEtzbO0adfVlFdEugaS8Z_jOP98XmDRiI",
+                "summonerName": "lbwk dream",
+                "leaguePoints": 33,
+                "rank": "I",
+                "wins": 59,
+                "losses": 66,
+                "veteran": false,
+                "inactive": false,
+                "freshBlood": false,
+                "hotStreak": false
+            }
+        ]
+    }
+}

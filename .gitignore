@@ -1,0 +1,9 @@
+# folders
+.vscode/
+venv/
+__pycache__/
+
+# files
+architecture.txt
+*.DS_Store
+*.exe
