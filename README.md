@@ -1,6 +1,9 @@
 # DraftCompanion
 DraftCompanion is a reference website for competitve esports (League of Legends), where players of all levels can use the tools provided to gain strategic advantages.
 
+## Demo
+A live working demo can be found here: https://draft-companion-340518.uc.r.appspot.com/
+
 ## Important Knowledge
 ### What is League of Legends?
 League of Legends is a game in the Multiplayer Online Battle Arena (MOBA) genre. In which, two teams of five players compete against each other to be the first team to destroy the enemy team's Nexus. The players each pilot their own unique champion in order to do this.
