@@ -4,7 +4,7 @@ DraftCompanion is a reference website for competitve esports (League of Legends)
 ## Important Knowledge
 ### What is League of Legends?
 League of Legends is a game in the Multiplayer Online Battle Arena (MOBA) genre. In which, two teams of five players compete against each other to be the first team to destroy the enemy team's Nexus. The players each pilot their own unique champion in order to do this.
-(A more detailed description can be found [here](https://lol.fandom.com/wiki/New_To_League/Welcome)
+(A more detailed description can be found [here](https://lol.fandom.com/wiki/New_To_League/Welcome))
 
 ### Vocabulary
 (the links provided offer a more detailed description of these terms)
@@ -28,7 +28,7 @@ League of Legends is a game in the Multiplayer Online Battle Arena (MOBA) genre.
 - Google Cloud
 
 ## Moving Forward
-- (As of 10/12) Some of the more recent updates I have done on the backend have not made their way to the live site yet, but I plan on pushing those changes soon
+- (As of 10/12) Some of the more recent updates I have done on the backend have not made their way to the live site yet, but I plan on pushing those changes soon.
 - The namesake for this website, the DraftCompanion, is currently the only tool I had planned that has not shipped. The DraftCompanion tool will give users the ability to analyze their draft while it is happening and will give them suggestions on who they should pick or ban next to maximize their advantage over their opponent.
 
 ## How to use the DraftCompanion Web App
